@@ -31,9 +31,6 @@ public class KlaviyoMemberAttributes
     [JsonPropertyName("phone_number")]
     public string? PhoneNumber { get; set; }
 
-    [JsonPropertyName("birthday")]
-    public string? Birthday { get; set; }
-
     [JsonPropertyName("location")]
     public KlaviyoLocation? Location { get; set; }
 
@@ -57,4 +54,7 @@ public class KlaviyoProperties
 
     [JsonPropertyName("enrolled_at")]
     public string EnrolledAt { get; set; } = string.Empty;
+
+    [JsonPropertyName("birthday")]
+    public string? Birthday { get; set; }
 }

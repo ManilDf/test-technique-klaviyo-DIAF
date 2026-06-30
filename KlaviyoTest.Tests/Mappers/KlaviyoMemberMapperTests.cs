@@ -70,7 +70,7 @@ public class KlaviyoMemberMapperTests : IDisposable
         Assert.Equal("Manil", result.Data.Attributes.FirstName);
         Assert.Equal("Diaf", result.Data.Attributes.LastName);
         Assert.Equal("+33753490896", result.Data.Attributes.PhoneNumber);
-        Assert.Equal("2002-10-21", result.Data.Attributes.Birthday);
+        Assert.Equal("2002-10-21", result.Data.Attributes.Properties.Birthday);
         Assert.Equal("Lille", result.Data.Attributes.Location?.City);
         Assert.Equal("France", result.Data.Attributes.Location?.Country);
         Assert.Equal(450, result.Data.Attributes.Properties?.LoyaltyPoints);
@@ -88,7 +88,7 @@ public class KlaviyoMemberMapperTests : IDisposable
         var result = await _sut.GetMemberAsync(1, 2);
 
         Assert.Null(result.Data.Attributes.PhoneNumber);
-        Assert.Null(result.Data.Attributes.Birthday);
+        Assert.Null(result.Data.Attributes.Properties.Birthday);
         Assert.Null(result.Data.Attributes.Location);
     }
 }

@@ -69,14 +69,14 @@ public class KlaviyoMemberMapper : IKlaviyoMemberMapper
                     FirstName   = reader.GetString(reader.GetOrdinal("FirstName")),
                     LastName    = reader.GetString(reader.GetOrdinal("LastName")),
                     PhoneNumber = reader.IsDBNull(phoneOrdinal) ? null : reader.GetString(phoneOrdinal),
-                    Birthday    = birthDate,
                     Location    = city == null && country == null
                         ? null
                         : new KlaviyoLocation { City = city, Country = country },
                     Properties  = new KlaviyoProperties
                     {
                         LoyaltyPoints = reader.GetInt32(reader.GetOrdinal("LoyaltyPoints")),
-                        EnrolledAt    = enrolledAt
+                        EnrolledAt    = enrolledAt,
+                        Birthday      = birthDate
                     }
                 }
             }
