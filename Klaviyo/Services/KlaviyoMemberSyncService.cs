@@ -19,6 +19,19 @@ public class KlaviyoMemberSyncService : IKlaviyoMemberSyncService
         _logger = logger;
     }
 
-    public Task SyncMemberAsync(int connectionId, int memberId, string accessToken)
-        => throw new NotImplementedException();
+    public async Task SyncMemberAsync(int connectionId, int memberId, string accessToken)
+    {
+        var member = await _mapper.GetMemberAsync(connectionId, memberId);
+
+        var response = await _apiClient.CreateOrUpdateProfileAsync(member, accessToken);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var body = await response.Content.ReadAsStringAsync();
+            throw new InvalidOperationException(
+                $"Klaviyo API error {(int)response.StatusCode}: {body}");
+        }
+
+        _logger.LogInformation("Member {MemberId} synced to Klaviyo.", memberId);
+    }
 }
